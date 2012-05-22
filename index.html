@@ -1,0 +1,51 @@
+<html>
+<head>
+	<title>jQuery - gitLive</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery-gitlive.js"></script>
+	<style type="text/css">
+		.nice-wrapper{
+			width:1020px;
+			border:1px solid #ccc;
+			box-shadow:0px 0px 11px #ccc;
+			height:500px;
+			margin:auto;
+		}
+		#fork-me-github{
+			float:right;
+		}
+		#fork-me-github img{
+			width:110px;
+		}
+		input{
+			border:2px solid #ccc;
+			border-radius:5px;
+			background-color:#ddd;
+			padding:10px;
+			float:left;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="nice-wrapper">
+		
+		<input name="value" placeholder="github user name"/>
+		<button id="usr-value"><img src="http://cdn1.iconfinder.com/data/icons/fatcow/32x32_0160/bullet_go.png"></button>
+
+		<div class="test"></div>
+
+		<a id="fork-me-github" href="https://github.com/krosti/jQuery-gitLive"><img src="visionary.jpg" ></a>
+	</div>
+	<script type="text/javascript">
+	$('#usr-value').on('click', function(){
+		var usr = $("input").val();
+		$.getJSON('https://api.github.com/users/'+usr+'?callback=?', function(data){
+		    //do stuff data.data
+		    $('#fork-me-github img').attr('src',data.data['avatar_url']);
+		});
+
+	});
+	</script>
+</body>
+</html>
