@@ -4,12 +4,15 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script type="text/javascript" src="jquery-gitlive.js"></script>
 	<style type="text/css">
+
 		.nice-wrapper{
 			width:1020px;
 			border:1px solid #ccc;
 			box-shadow:0px 0px 11px #ccc;
 			height:500px;
 			margin:auto;
+			background: #333;
+			opacity: 0.8;
 		}
 		#fork-me-github{
 			float:right;
@@ -38,13 +41,19 @@
 		<a id="fork-me-github" href="https://github.com/krosti/jQuery-gitLive"><img src="visionary.jpg" ></a>
 	</div>
 	<script type="text/javascript">
-	$('#usr-value').on('click', function(){
+	
+	function getCommits(){
 		var usr = $("input").val();
 		$.getJSON('https://api.github.com/users/'+usr+'?callback=?', function(data){
 		    //do stuff data.data
-		    $('#fork-me-github img').attr('src',data.data['avatar_url']);
+		    //$('#fork-me-github img').attr('src',data.data['avatar_url']);
+		    console.log(data);
+		    $('.test').append("<div>"+data.data['email']+"</div>");
 		});
+	}
 
+	$('#usr-value').on('click', function(){
+		setInterval("getCommits()",5000);
 	});
 	</script>
 </body>
